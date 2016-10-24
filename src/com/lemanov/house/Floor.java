@@ -3,12 +3,14 @@ package com.lemanov.house;
 import apartment.Apartment;
 import apartment.LivingApartment;
 import apartment.TechnicalApartment;
+import staff.Cleaner;
 
 public class Floor {
 	
 	private int number;
 	private Apartment[] apartments;
 	private static final int DEFAULT_APARTMENT_CAPACITY = 2;
+	private Cleaner cleaner;
 	
 	public Floor(int number, int apartOnFloor, NumberGenerator apartNumberGen) {
 		this.number = number;
@@ -23,7 +25,11 @@ public class Floor {
 	public LivingApartment getFreeApartment() {
 		for (Apartment apartment : apartments) {
 			if (apartment instanceof LivingApartment && apartment.isFree()) {
-				return (LivingApartment) apartment;
+				LivingApartment livingApartment = (LivingApartment) apartment;
+				if (!livingApartment.isSettled()) {
+					cleaner.clean(apartment);
+				}
+				return livingApartment;
 			}
 		}
 		return null;
@@ -39,6 +45,10 @@ public class Floor {
 		}
 		result += "=========================\n";
 		return result;
+	}
+
+	public void setCleaner(Cleaner cleaner) {
+		this.cleaner = cleaner;
 	}
 
 }

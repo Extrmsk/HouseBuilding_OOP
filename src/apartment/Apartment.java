@@ -17,7 +17,9 @@ public abstract class Apartment {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	
+
+	public String getNubmer() {
+		return Integer.toString(number);
+	}
 
 }

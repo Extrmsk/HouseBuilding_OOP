@@ -41,5 +41,9 @@ public class LivingApartment extends Apartment {
 	public boolean isFree() {
 		return owners[owners.length - 1] == null;
 	}
+	
+	public boolean isSettled() {
+		return (owners[0] != null);
+	}
 
 }

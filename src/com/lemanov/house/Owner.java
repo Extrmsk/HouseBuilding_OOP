@@ -2,7 +2,7 @@ package com.lemanov.house;
 
 public class Owner {
 	
-	private final String name;
+	protected final String name;
 	
 	public Owner (String name) {
 		this.name = name;
